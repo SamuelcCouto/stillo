@@ -18,7 +18,7 @@ export function Cabecalho() {
 
   useGSAP(() => {
     const cab = ref.current!;
-    gsap.set(cab, { opacity: 1 });
+    gsap.set(cab, { opacity: 1, animation: 'none' });
     // Transparente (texto branco) sobre o preto do hero; sólido a partir do muro de cartazes.
     // refreshPriority baixo: calcula depois do pin do hero, que empurra a página.
     // Elemento, não seletor: o useGSAP restringe seletores ao próprio cabeçalho.

@@ -20,7 +20,12 @@ export function Hero() {
 
   useGSAP(
     () => {
-      gsap.set(['.hero__conteudo', '.hero__placa-wrap', '.hero__foto-wrap', '.hero__regua-wrap'], { opacity: 1 });
+      // "animation: none" desliga o failsafe do CSS: uma animação com fill "forwards"
+      // vence o estilo inline, e a placa, a foto e a régua não sumiriam na rolagem.
+      gsap.set(['.hero__conteudo', '.hero__placa-wrap', '.hero__foto-wrap', '.hero__regua-wrap'], {
+        opacity: 1,
+        animation: 'none',
+      });
 
       const mm = gsap.matchMedia();
       mm.add(COM_MOVIMENTO, () => {

@@ -16,6 +16,7 @@ export const textoFaixas = (faixas: readonly Faixa[]) =>
 /** Barra de um dia, com as faixas abertas e, se for hoje, o "agora". */
 export function BarraDia({ faixas, agora }: { faixas: readonly Faixa[]; agora?: number | null }) {
   const agoraVisivel = agora != null && agora >= REGUA_INICIO && agora <= REGUA_FIM;
+  const lado = agoraVisivel ? (pos(agora) > 80 ? ' barra__agora-rotulo--direita' : pos(agora) < 20 ? ' barra__agora-rotulo--esquerda' : '') : '';
   return (
     <div className="barra" aria-hidden="true">
       {faixas.map(([a, b]) => (
@@ -23,7 +24,7 @@ export function BarraDia({ faixas, agora }: { faixas: readonly Faixa[]; agora?: 
       ))}
       {agoraVisivel ? (
         <span className="barra__agora" style={{ left: `${pos(agora)}%` }}>
-          <span className="barra__agora-rotulo">agora, {formatarHora(agora)}</span>
+          <span className={`barra__agora-rotulo${lado}`}>agora, {formatarHora(agora)}</span>
         </span>
       ) : null}
     </div>

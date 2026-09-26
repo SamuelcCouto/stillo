@@ -24,7 +24,7 @@
   --display-largura: 66%;
 
   /* Escala */
-  --t-hero: clamp(62px, 10.4vw, 172px);
+  --t-hero: clamp(62px, min(10.4vw, 18.5svh), 172px); /* limita pela altura em notebooks baixos */
   --t-h2: clamp(44px, 6.4vw, 104px);
 }
 
@@ -313,6 +313,8 @@ code { font-family: inherit; background: rgb(0 0 0 / .08); padding: 0 4px; borde
   background: var(--vermelho); color: var(--branco);
   padding: 4px 7px; border-radius: 5px;
 }
+.barra__agora-rotulo--direita { left: auto; right: -8px; transform: none; }
+.barra__agora-rotulo--esquerda { left: -8px; transform: none; }
 .regua .barra__agora-rotulo { display: none; } /* no hero a legenda já diz "hoje" */
 .regua .barra__agora { top: -5px; bottom: -5px; }
 
@@ -502,7 +504,7 @@ code { font-family: inherit; background: rgb(0 0 0 / .08); padding: 0 4px; borde
 }
 @media (max-width: 560px) {
   .numeros { grid-template-columns: 1fr; gap: 20px; }
-  .numeros li { grid-template-columns: 5.5ch 1fr; align-items: center; gap: 14px; }
+  .numeros li { grid-template-columns: 128px minmax(0, 1fr); align-items: center; gap: 14px; }
   .turma__mural { gap: 48px 16px; }
 }
 
@@ -649,7 +651,10 @@ code { font-family: inherit; background: rgb(0 0 0 / .08); padding: 0 4px; borde
   }
   .barra-celular .botao { min-height: 46px; padding: 0 16px; font-size: 16px; box-shadow: 3px 3px 0 var(--vermelho); }
 }
-.barra-celular__status { display: flex; align-items: center; gap: 10px; font-size: 16px; line-height: 1.2; }
+.barra-celular__status { display: flex; align-items: center; gap: 10px; min-width: 0; font-size: 16px; line-height: 1.2; }
+.barra-celular__texto { display: grid; min-width: 0; }
+.barra-celular__texto strong { font-size: 16px; }
+.barra-celular__texto span { font-size: 14px; color: var(--cinza); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 .barra-celular__ponto { width: 12px; height: 12px; border-radius: 50%; background: var(--cinza); flex: none; }
 /* Mesma linguagem da placa: vermelho = aberto, contorno preto = fechado. */
 .barra-celular__status[data-estado='aberto'] .barra-celular__ponto { background: var(--vermelho); box-shadow: 0 0 0 3px rgb(200 16 46 / .22); }
@@ -734,6 +739,41 @@ html.com-notas .nota { display: block; }
   .hero__acao .botao { min-height: 48px; padding: 0 16px; font-size: 16px; }
   .hero__acao .botao:first-child { display: none; } /* o WhatsApp já está na barra de baixo */
   .regua__legenda { font-size: 15px; }
+}
+
+@media (max-width: 560px) {
+  .rodape__frase { font-size: 17.5vw; }
+  .rodape__chamada { gap: 24px; }
+}
+/* Hero em telas baixas (iPhone SE/8, ou o Safari com a barra aberta): o hero
+   se mede pela própria altura (100svh) e abre mão do que é secundário. */
+.hero { container: hero / size; }
+@container hero (min-width: 761px) and (max-height: 690px) {
+  .hero__conteudo { bottom: 126px; }
+  .hero__titulo { margin-bottom: 24px; }
+  .hero__foto-wrap { width: clamp(220px, 20vw, 290px); bottom: 126px; }
+}
+@media (min-width: 761px) and (max-width: 1100px) and (orientation: portrait) {
+  .hero__titulo { font-size: 14vw; } /* tablet em pé: o título ocupa a tela alta */
+}
+@container hero (max-width: 760px) and (max-height: 760px) {
+  .hero__foto-wrap { display: none; }
+}
+@container hero (max-width: 760px) and (max-height: 700px) {
+  .hero__titulo { font-size: 17vw; }
+  .placa__cordao { height: 26px; }
+}
+@container hero (max-width: 760px) and (max-height: 660px) {
+  .hero__titulo { font-size: 15.5vw; margin-bottom: 18px; }
+  .hero__conteudo { bottom: calc(var(--barra-h) + 96px); }
+  .regua__marcas { display: none; }
+}
+@media (max-width: 380px) {
+  .hero__foto-wrap { width: 42vw; }
+  .placa { width: 150px; }
+  .placa__texto { font-size: 36px; }
+  .placa__detalhe { font-size: 14px; }
+  .barra-celular .botao { padding: 0 12px; }
 }
 
 /* ---------- movimento reduzido ---------- */

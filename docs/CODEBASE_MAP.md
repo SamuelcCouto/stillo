@@ -167,6 +167,8 @@ sequenceDiagram
 
 - **Ordem dos ScrollTriggers**: hero e coleção são criados na ordem da página. O gatilho do cabeçalho usa `refreshPriority: -1` e `document.getElementById('aulas')` (seletor em string seria restrito ao próprio cabeçalho pelo `scope` do `useGSAP`).
 - **Pin dentro de `div` do componente**: `Hero` e `ColecaoHorizontal` embrulham a `<section>` fixada num `div` com `ref`, senão o pin-spacer quebra a desmontagem.
+- **Failsafe x GSAP**: a animação CSS `failsafe` com `forwards` vence o estilo inline. Quem usa failsafe e também é animado pela rolagem precisa de `gsap.set(el, { opacity: 1, animation: 'none' })` (feito em `hero.tsx` e `cabecalho.tsx`); sem isso, placa, foto e régua não somem ao rolar.
+- **Hero responsivo pela altura**: `.hero` é container de tamanho (`container: hero / size`); em telas baixas a foto some e o título diminui (`@container hero (max-height: ...)`).
 - **Hidratação**: nada de hora/data no render do servidor; `useAgora()` retorna `null` no SSR e todos os consumidores têm texto de fallback.
 - **Fonte**: só a `Archivo` (eixo `wdth`, itálico). Letreiro = peso 900 + `font-stretch: var(--display-largura)` (66%) + itálico, pela regra agrupada no topo do CSS; horários em `font-stretch: 75%–85%`.
 - **CSP**: `style-src 'unsafe-inline'` é necessário (estilos inline de `left`/`--letras`). Nada de CDN: GSAP e Lenis vêm do npm.
