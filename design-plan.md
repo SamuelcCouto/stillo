@@ -17,6 +17,13 @@ Público: moradores do Vera Cruz e arredores, que chegam pelo link do Instagram,
 Função da página: responder "tá aberta? onde fica? que aula tem?" e levar a pessoa a mandar um oi no WhatsApp.
 Detalhe do mundo do cliente: o **letreiro pintado à mão** e a **placa de porta "Aberto/Fechado"** do comércio de bairro, o **horário quebrado** (fecha no almoço) e o **endereço dado por ponto de referência** ("em frente à passarela, do lado da igreja").
 
+## Revisão 3 (pedido do cliente)
+- Nenhum fundo vermelho: fundos só pretos e brancos (+ cinza-claro neutro), com o preto predominando como no logo. Vermelho só em letras, sombras dos títulos e detalhes (barras de horário, marcador "agora", ponto de status, contorno do "hoje").
+- Placa "Aberto": chapa branca com a palavra em vermelho e sombra vermelha; "Fechado": chapa preta. Cartazes alternam preto e branco. Cortina e mural das turmas: pretos.
+- Letreiro menos exagerado: peso 900 → 800, largura 66% → 72%, sombra de .05em → .035em, tamanhos ~6% menores.
+- Celular: título logo abaixo do cabeçalho; placa (e foto, em telas altas) na parte de baixo, à direita.
+- Notas da proposta removidas; o espaço virou um botão "Menu" no celular e no tablet.
+
 ## Paleta (revisão 2, pedido do cliente: só as cores do logo)
 | Token | Hex | Papel |
 |-------|-----|-------|

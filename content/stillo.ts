@@ -74,11 +74,11 @@ export type Modalidade = {
   formato: Formato;
   descricao: string;
   foto?: { src: string; alt: string };
-  cor: 'preto' | 'vermelho' | 'branco';
+  cor: 'preto' | 'branco';
 };
 
-// Ordem = ordem dos cartazes no muro. As cores alternam para o muro não
-// repetir o mesmo cartaz lado a lado.
+// Ordem = ordem dos cartazes no muro. Preto e branco se alternam; vermelho
+// só nos detalhes (nome, sombra), nunca no fundo.
 export const modalidades: Modalidade[] = [
   {
     id: 'musculacao',
@@ -96,7 +96,7 @@ export const modalidades: Modalidade[] = [
     formato: 'Aula em turma',
     descricao: 'Aula no mini trampolim, com música alta. Cansa, mas você só percebe no fim.',
     foto: { src: '/fotos/turma-jump.jpg', alt: 'Turma de Jump reunida para foto, à noite' },
-    cor: 'vermelho',
+    cor: 'branco',
   },
   {
     id: 'funcional',
@@ -105,7 +105,7 @@ export const modalidades: Modalidade[] = [
     formato: 'Aula em turma',
     descricao: 'Agachar, empurrar, puxar, saltar: os movimentos do dia a dia em circuito.',
     foto: { src: '/fotos/turma-funcional.jpg', alt: 'Turma de treinamento funcional posando na academia' },
-    cor: 'branco',
+    cor: 'preto',
   },
   {
     id: 'ritmos',
@@ -114,7 +114,7 @@ export const modalidades: Modalidade[] = [
     formato: 'Aula em turma',
     descricao: 'Coreografias fáceis em ritmos variados. Não precisa saber dançar.',
     foto: { src: '/fotos/turma-ritmos.jpg', alt: 'Alunas dançando durante a aula de Ritmos' },
-    cor: 'preto',
+    cor: 'branco',
   },
   {
     id: 'gap',
@@ -123,7 +123,7 @@ export const modalidades: Modalidade[] = [
     formato: 'Aula em turma',
     descricao: 'Glúteo, abdômen e perna. Aula localizada, uma parte do corpo de cada vez.',
     foto: { src: '/fotos/turma-gap.jpg', alt: 'Turma de GAP fazendo exercício no chão' },
-    cor: 'vermelho',
+    cor: 'preto',
   },
   {
     id: 'abs',

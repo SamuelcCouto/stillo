@@ -2,7 +2,6 @@
 import { academia, modalidades, turmas } from '@/content/stillo';
 import { horasAbertasDiaUtil } from '@/lib/horario';
 import { Contador } from '@/components/motion/contador';
-import { Nota } from '@/components/notas';
 
 /** Editorial: o texto e os números ficam parados à esquerda; o mural de fotos passa à direita. */
 export function Turma() {
@@ -43,10 +42,6 @@ export function Turma() {
             <figcaption>{t.legenda}</figcaption>
           </figure>
         ))}
-        <Nota titulo="Fotos provisórias" className="nota--turma">
-          Tiradas dos destaques do Instagram, por isso tão pequenas. Próxima etapa: uma manhã de fotos e vídeo na
-          academia, com as turmas de verdade.
-        </Nota>
       </div>
     </section>
   );

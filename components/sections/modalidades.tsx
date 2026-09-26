@@ -2,7 +2,6 @@
 import { linkWhatsApp, mensagemModalidade, modalidades } from '@/content/stillo';
 import { ColecaoHorizontal } from '@/components/sections/colecao-horizontal';
 import { IconeWhatsApp } from '@/components/ui/icone-whatsapp';
-import { Nota } from '@/components/notas';
 
 /**
  * O muro de lambe-lambe: um cartaz por modalidade, lado a lado, passando na
@@ -35,10 +34,6 @@ export function Modalidades() {
           Musculação e cardio no seu horário. Jump, Funcional, Ritmos, GAP e ABS em turma, com música. E avaliação
           física para ver o resultado no papel.
         </p>
-        <Nota titulo="Um clique, mensagem pronta" className="nota--intro">
-          Cada cartaz abre o WhatsApp da Stillo com a mensagem já escrita, dizendo qual aula a pessoa quer. Quem
-          atende já sabe do que se trata.
-        </Nota>
       </div>
 
       {modalidades.map((m) => (

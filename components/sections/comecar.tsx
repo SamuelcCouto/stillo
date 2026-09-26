@@ -1,5 +1,3 @@
-import { Nota } from '@/components/notas';
-
 const passos = [
   { titulo: 'Manda um oi', texto: 'Conta no WhatsApp o que você quer treinar e em que horário fica melhor.' },
   { titulo: 'Vem conhecer', texto: 'Passa na academia para ver o espaço, os aparelhos e tirar as dúvidas com a equipe.' },
@@ -24,10 +22,6 @@ export function Comecar() {
           </li>
         ))}
       </ol>
-      <Nota titulo="E os preços?" className="nota--comecar">
-        Mostrar o valor dos planos aqui é opcional, mas ajuda: muita gente desiste quando precisa perguntar o preço.
-        Você decide o que aparece.
-      </Nota>
     </section>
   );
 }

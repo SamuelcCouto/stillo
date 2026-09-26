@@ -41,7 +41,6 @@ graph TB
         Placa[ui/placa.tsx]
         Regua[ui/regua.tsx]
         BotaoWA[ui/botao-whatsapp.tsx]
-        Notas[notas.tsx]
     end
     Layout --> Page
     Page --> Hero & Modal & Turma & Horarios & Chegar & Comecar & Rodape
@@ -62,11 +61,10 @@ stillo/
 ├── app/
 │   ├── layout.tsx          # <html>, fonte Archivo (normal + itálico, eixo wdth), metadata, SmoothScroll, Cabecalho, BarraCelular
 │   ├── page.tsx            # ordem das seções = ordem dos ScrollTriggers
-│   └── globals.css         # tokens (:root), todas as seções, notas, reduced motion
+│   └── globals.css         # tokens (:root), todas as seções, menu do celular, reduced motion
 ├── components/
-│   ├── cabecalho.tsx       # header fixo; fica sólido a partir de #aulas; links com rolarPara
+│   ├── cabecalho.tsx       # header fixo; fica sólido a partir de #aulas; links com rolarPara; botão "Menu" (≤980px)
 │   ├── barra-celular.tsx   # só ≤760px: status ao vivo + WhatsApp
-│   ├── notas.tsx           # <Nota> (post-it) e <NotasToggle> (camada da proposta)
 │   ├── motion/             # vindos da referência da skill site-premium
 │   │   ├── smooth-scroll.tsx   # Lenis ligado ao ticker do GSAP
 │   │   ├── split-chars.tsx     # título em .char > .char__in + cópia .sr-only
@@ -92,7 +90,7 @@ stillo/
 │   └── motion.ts           # registro do GSAP, Lenis singleton, rolarPara, COM_MOVIMENTO
 ├── public/fotos/           # logo, turmas, sala-rosa-recorte, ilustracao-equipe (do Instagram)
 ├── design-plan.md          # identidade visual, dados levantados, revisão contra o briefing
-├── README.md               # rodar, apresentação (?notas, ?hora, ?dia), o que é provisório
+├── README.md               # rodar, apresentação (?hora, ?dia), pontos para falar, o que é provisório
 └── next.config.ts          # CSP e headers de segurança
 ```
 
@@ -124,9 +122,8 @@ stillo/
 | `comecar.tsx` | não | estático | único lugar com numeração (é sequência real) |
 | `rodape.tsx` | não | estático | |
 
-### UI e camada de notas
-`Placa` (estado em `data-estado="aberto|fechado|carregando"`), `ReguaDia`/`BarraDia` (régua 5h–23h, `pos()` limitado a esse intervalo), `BotaoWhatsApp` (`variante="claro"` para fundo escuro), `Nota`/`NotasToggle` (post-its; `?notas=1` ou botão; `sessionStorage['stillo-notas']`).
-
+### UI
+`Placa` (estado em `data-estado="aberto|fechado|carregando"`), `ReguaDia`/`BarraDia` (régua 5h–23h, `pos()` limitado a esse intervalo), `BotaoWhatsApp` (`variante="claro"` para fundo escuro).
 ## Data Flow
 
 ```mermaid
@@ -161,7 +158,7 @@ sequenceDiagram
 - **Camadas de animação**: entrada anima o elemento de dentro (`.char__in`, `.hero__onde`, `.placa`, `.hero__foto`), rolagem anima o de fora (`.char`, `*-wrap`). Nunca os dois no mesmo elemento.
 - **Reduced motion**: `gsap.matchMedia().add(COM_MOVIMENTO, …)` no JS e `@media (prefers-reduced-motion: reduce)` no CSS (trilha vira rolagem lateral nativa, cortina vira bloco).
 - **Failsafe**: `.cabecalho` e as camadas do hero começam `opacity: 0` com `animation: failsafe 0s 4s forwards`; o `useGSAP` mostra antes.
-- **Tokens** em `:root` (`--preto`, `--vermelho` #C8102E, `--vermelho-escuro`, `--branco`, `--claro`, `--cinza`, `--display-largura`); cartazes em `cartaz--preto|vermelho|branco`; breakpoints 1100/980/900/760/560/520 px; `--barra-h` vale 68px só no celular. Paleta fechada pelo cliente: nada fora de preto, vermelho e branco.
+- **Tokens** em `:root` (`--preto`, `--vermelho` #C8102E (só texto e detalhes), `--branco`, `--claro`, `--cinza`, `--display-largura`); cartazes em `cartaz--preto|branco` (nenhum fundo vermelho); breakpoints 1100/980/900/760/560/520 px; `--barra-h` vale 68px só no celular. Paleta fechada pelo cliente: nada fora de preto, vermelho e branco.
 
 ## Gotchas
 
@@ -170,7 +167,7 @@ sequenceDiagram
 - **Failsafe x GSAP**: a animação CSS `failsafe` com `forwards` vence o estilo inline. Quem usa failsafe e também é animado pela rolagem precisa de `gsap.set(el, { opacity: 1, animation: 'none' })` (feito em `hero.tsx` e `cabecalho.tsx`); sem isso, placa, foto e régua não somem ao rolar.
 - **Hero responsivo pela altura**: `.hero` é container de tamanho (`container: hero / size`); em telas baixas a foto some e o título diminui (`@container hero (max-height: ...)`).
 - **Hidratação**: nada de hora/data no render do servidor; `useAgora()` retorna `null` no SSR e todos os consumidores têm texto de fallback.
-- **Fonte**: só a `Archivo` (eixo `wdth`, itálico). Letreiro = peso 900 + `font-stretch: var(--display-largura)` (66%) + itálico, pela regra agrupada no topo do CSS; horários em `font-stretch: 75%–85%`.
+- **Fonte**: só a `Archivo` (eixo `wdth`, itálico). Letreiro = peso 800 + `font-stretch: var(--display-largura)` (72%) + itálico, pela regra agrupada no topo do CSS; horários em `font-stretch: 75%–85%`.
 - **CSP**: `style-src 'unsafe-inline'` é necessário (estilos inline de `left`/`--letras`). Nada de CDN: GSAP e Lenis vêm do npm.
 - **Porta 3000** costuma estar ocupada por outro projeto na máquina; o README usa 3210.
 - **Fotos** são capas de destaque do Instagram (150 px); só servem pequenas.
@@ -182,5 +179,4 @@ sequenceDiagram
 - **Mudar as regras de "aberto/fechado"**: `lib/horario.ts` (`statusEm`).
 - **Adicionar uma seção**: componente em `components/sections/`, incluir em `app/page.tsx` na ordem certa; se for fixada, criar o ScrollTrigger dentro de `useGSAP` com `div` invólucro (máximo de dois trechos fixados na página).
 - **Trocar cores/fontes**: `:root` em `app/globals.css` (e a regra agrupada "letreiro") e `next/font` em `app/layout.tsx`.
-- **Remover as notas da proposta**: apagar os `<Nota>` das seções, o `<NotasToggle>` do `cabecalho.tsx`, `components/notas.tsx` e o bloco `.nota`/`.notas-botao` do CSS.
 - **QA com prints**: `npm run build && npx next start -p 3210`, depois `node <skill site-premium>/scripts/prints.mjs http://localhost:3210 --out prints` (e `--reduce`).

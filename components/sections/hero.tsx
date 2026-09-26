@@ -7,7 +7,6 @@ import { SplitChars } from '@/components/motion/split-chars';
 import { BotaoWhatsApp } from '@/components/ui/botao-whatsapp';
 import { Placa } from '@/components/ui/placa';
 import { ReguaDia } from '@/components/ui/regua';
-import { Nota } from '@/components/notas';
 
 /**
  * Hero fixado. Camadas, para entrada e rolagem nunca mexerem no mesmo elemento:
@@ -121,13 +120,6 @@ export function Hero() {
           <ReguaDia />
         </div>
 
-        <Nota titulo="Placa ao vivo" className="nota--hero-placa">
-          Ela olha a hora de Goiânia e responde sozinha se a Stillo tá aberta, até na hora do almoço. Menos
-          &ldquo;tá aberto?&rdquo; no WhatsApp.
-        </Nota>
-        <Nota titulo="Uma frase para a marca" className="nota--hero-frase">
-          &ldquo;Cada um no seu Stillo&rdquo; brinca com o nome e cabe em tudo: muro, camiseta, post, garrafinha.
-        </Nota>
       </section>
     </div>
   );

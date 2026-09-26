@@ -1,6 +1,5 @@
 import { academia } from '@/content/stillo';
 import { BotaoWhatsApp } from '@/components/ui/botao-whatsapp';
-import { Nota } from '@/components/notas';
 
 /** Endereço do jeito que o bairro explica: pelo ponto de referência primeiro. */
 export function ComoChegar() {
@@ -34,10 +33,6 @@ export function ComoChegar() {
           referrerPolicy="no-referrer-when-downgrade"
         />
       </div>
-      <Nota titulo="Google desatualizado" className="nota--chegar">
-        No Google Maps, o endereço da Stillo ainda é o antigo (R. JR 6), o perfil não foi reivindicado e só tem 3
-        fotos. A gente arruma isso junto com o site: é de lá que vem muita gente nova.
-      </Nota>
     </section>
   );
 }

@@ -4,7 +4,6 @@ import { horarios, nomesDias, type DiaSemana } from '@/content/stillo';
 import { formatarHora } from '@/lib/horario';
 import { useAgora } from '@/lib/use-agora';
 import { BarraDia, pos, textoFaixas } from '@/components/ui/regua';
-import { Nota } from '@/components/notas';
 
 const ORDEM: DiaSemana[] = [1, 2, 3, 4, 5, 6, 0];
 const ESCALA = [6, 8, 10, 12, 14, 16, 18, 20, 22].map((h) => h * 60);
@@ -53,10 +52,6 @@ export function Horarios() {
         </ul>
       </div>
 
-      <Nota titulo="Grade das turmas" className="nota--horarios">
-        Aqui entra a grade das aulas: que horas tem Jump, Ritmos, GAP, ABS e Funcional. Na versão com área do aluno,
-        dá até para reservar vaga na turma.
-      </Nota>
     </section>
   );
 }

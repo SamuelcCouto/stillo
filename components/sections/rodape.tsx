@@ -1,7 +1,6 @@
 import { academia, linkWhatsApp } from '@/content/stillo';
 import { resumoSemana } from '@/lib/horario';
 import { BotaoWhatsApp } from '@/components/ui/botao-whatsapp';
-import { Nota } from '@/components/notas';
 
 export function Rodape() {
   const { endereco, whatsapp, instagram } = academia;
@@ -70,10 +69,6 @@ export function Rodape() {
         Stillo.
       </p>
 
-      <Nota titulo="Depois do site" className="nota--rodape">
-        Domínio próprio (algo como stillofitness.com.br), área do aluno com treino no celular, check-in na recepção e
-        mensalidade no Pix automático. O site é a porta de entrada disso tudo.
-      </Nota>
     </footer>
   );
 }
